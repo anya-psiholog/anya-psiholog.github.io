@@ -266,6 +266,11 @@ footer .sign em{font-style:normal;color:var(--orange)}
 footer .by{font:400 var(--fs-small)/1.3 var(--text);color:#B9AFA7;margin-top:40px}
 footer .by a{color:var(--milk);margin:0;text-decoration:underline;text-underline-offset:3px}
 footer .by a:hover{color:var(--orange)}
+footer .legal{margin-top:40px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;max-width:46ch;color:#B9AFA7}
+footer .legal a{color:var(--milk);text-decoration:underline;text-underline-offset:3px}
+footer .legal a:hover{color:var(--orange)}
+.chat .consent{margin-top:12px}
+.chat .consent a{color:inherit}
 
 /* ПАНЕЛЬ ЗАПИСИ */
 .veil{position:fixed;inset:0;background:rgba(31,28,26,.35);opacity:0;pointer-events:none;transition:opacity .25s;z-index:50}
@@ -443,7 +448,7 @@ body.sheet-open .sheet{transform:none}
     <p class="meta">онлайн · встреча 1&nbsp;час · <b>1000&nbsp;₽</b> до&nbsp;1&nbsp;января</p>
     <div class="actions">
       <button class="btn" data-book><span>Записаться на <span class="opt">бесплатное </span>знакомство</span><svg class="stroke" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></button>
-      <a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Написать в&nbsp;Instagram<svg class="stroke" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></a>
+      <a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Написать в&nbsp;Instagram*<svg class="stroke" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></a>
     </div>
   </div>
   <div class="visual">
@@ -538,7 +543,7 @@ body.sheet-open .sheet{transform:none}
     <div class="review-sm a"><p>Если&nbsp;коротко&nbsp;— я&nbsp;пришла с&nbsp;мыслью «ну&nbsp;давайте попробуем, вдруг поможет». Мне понравилось, что&nbsp;вы&nbsp;не&nbsp;пытались меня учить жизни. Наоборот, иногда один ваш вопрос заставлял меня потом полдня ходить и&nbsp;думать: «Так… а&nbsp;ведь правда». Сейчас я&nbsp;гораздо спокойнее реагирую на&nbsp;многие вещи и&nbsp;меньше загоняю себя.</p></div>
     <div class="review-sm b"><p>Я&nbsp;пришла с&nbsp;одной проблемой, а&nbsp;в&nbsp;итоге поняла про&nbsp;себя намного больше. Очень нравится, что&nbsp;с&nbsp;вами можно говорить обо всём без&nbsp;страха, что&nbsp;меня осудят.</p></div>
     <div class="review-sm c"><p>Честно, не&nbsp;ожидала, что&nbsp;терапия настолько мне поможет. Я&nbsp;стала меньше накручивать себя и&nbsp;намного спокойнее реагировать на&nbsp;ситуации, которые раньше выбивали меня из&nbsp;колеи.</p></div>
-    <div class="cta"><button class="btn" data-book><span>Записаться на <span class="opt">бесплатное </span>знакомство</span><svg class="stroke" viewBox="0 0 30 20"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></button><a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Ещё отзывы в&nbsp;Instagram</a></div>
+    <div class="cta"><button class="btn" data-book><span>Записаться на <span class="opt">бесплатное </span>знакомство</span><svg class="stroke" viewBox="0 0 30 20"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></button><a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Ещё отзывы в&nbsp;Instagram*</a></div>
   </div>
 </section>
 
@@ -592,10 +597,10 @@ body.sheet-open .sheet{transform:none}
 </main>
 <footer>
   <div class="wrap row">
-    <div>Анна Литинская, психолог<br><span style="color:#B9AFA7">Если&nbsp;тебе очень плохо прямо сейчас и&nbsp;есть угроза жизни&nbsp;— звони 112.</span></div>
-    <div class="contacts"><div class="links"><a href="https://t.me/al_annn" target="_blank" rel="noopener">Telegram</a><a href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Instagram</a><a href="https://max.ru/" target="_blank" rel="noopener">MAX</a><!-- заменить https://max.ru/ на ссылку профиля Ани из приложения MAX: Профиль → Поделиться --></div><div class="by">Создание сайта&nbsp;— <a href="https://t.me/ellitinskaya" target="_blank" rel="noopener">@ellitinskaya</a></div></div>
+    <div>Анна Литинская, психолог<br><span style="color:#B9AFA7">Если&nbsp;тебе очень плохо прямо сейчас и&nbsp;есть угроза жизни&nbsp;— звони 112.</span><div class="legal"><a href="politika.html">Политика обработки персональных данных</a><a href="soglasie.html">Согласие на&nbsp;обработку персональных данных</a><p>* Instagram принадлежит компании Meta, признанной экстремистской организацией и&nbsp;запрещённой в&nbsp;России.</p></div></div>
+    <div class="contacts"><div class="links"><a href="https://t.me/al_annn" target="_blank" rel="noopener">Telegram</a><a href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Instagram*</a><a href="https://max.ru/" target="_blank" rel="noopener">MAX</a><!-- заменить https://max.ru/ на ссылку профиля Ани из приложения MAX: Профиль → Поделиться --></div><div class="by">Создание сайта&nbsp;— <a href="https://t.me/ellitinskaya" target="_blank" rel="noopener">@ellitinskaya</a></div></div>
   </div>
-  <div class="sign">Аня, ты&nbsp;псих<em>олог</em></div>
+  <div class="sign">Аня, ты псих<em>олог</em></div>
 </footer>
 
 <!-- ПАНЕЛЬ ЗАПИСИ -->
@@ -621,8 +626,9 @@ body.sheet-open .sheet{transform:none}
       <div style="margin-top:8px">Пишу с&nbsp;сайта.</div>
     </div>
     <button class="btn" data-copy>Скопировать и&nbsp;открыть Telegram</button>
+    <p class="small consent">Отправляя сообщение, ты&nbsp;соглашаешься на&nbsp;<a href="soglasie.html" target="_blank">обработку персональных данных</a>.</p>
     <p class="err">Не&nbsp;получилось скопировать. Выдели текст и&nbsp;скопируй вручную.</p>
-    <div class="links"><a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Написать в&nbsp;Instagram</a></div>
+    <div class="links"><a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Написать в&nbsp;Instagram*</a></div>
   </div>
 </template>
 
