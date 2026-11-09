@@ -4,10 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Аня, ты психолог — консультации онлайн</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/caveat-700-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/onest-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/anya-hero-v2.webp" as="image" fetchpriority="high">
 <style>
+/* Шрифты лежат на сайте. Пока грузятся — ровный системный шрифт, а не «рукописный» Comic Sans */
+@font-face{font-family:'Caveat';font-weight:700;font-display:swap;src:url(fonts/caveat-700-cyr.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Caveat';font-weight:700;font-display:swap;src:url(fonts/caveat-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Caveat';font-weight:700;font-display:swap;src:url(fonts/caveat-700-latinext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Onest';font-weight:400 600;font-display:swap;src:url(fonts/onest-cyr.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Onest';font-weight:400 600;font-display:swap;src:url(fonts/onest-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Onest';font-weight:400 600;font-display:swap;src:url(fonts/onest-latinext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}
+/* запасные шрифты подогнаны по размеру, чтобы при подмене текст не прыгал */
+@font-face{font-family:'Caveat Fallback';src:local('Arial Narrow'),local('ArialNarrow'),local('Roboto Condensed'),local('Arial');size-adjust:78%;ascent-override:118%}
+@font-face{font-family:'Onest Fallback';src:local('Arial'),local('Helvetica'),local('Roboto');size-adjust:98%}
 :root{
   --milk:#FAF4EE;
   --milk-2:#F3E9DF;
@@ -17,8 +27,8 @@
   --orange-field:#FF7A33;
   --lime:#D6F28E;
   --card:#FFFDFB;
-  --hand:'Caveat', cursive;
-  --text:'Onest', system-ui, sans-serif;
+  --hand:'Caveat','Caveat Fallback',sans-serif;
+  --text:'Onest','Onest Fallback',system-ui,sans-serif;
   --mono:var(--text); /* второй простой шрифт — только Onest */
   --peach:#F7D9C4;
   --line:#E6DBD0;
@@ -161,22 +171,23 @@ section{position:relative}
 .s4 .text p.voice-note{margin-top:12px}
 .s4 .text{padding:0 var(--margin) 0 min(8.333vw,121px);max-width:calc(var(--maxw)/2 + var(--margin) + 120px)}
 .s4 .text p{margin-top:24px;max-width:34ch}
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);margin-top:64px}
+.facts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--gap);margin-top:64px}
 .fact{background:var(--card);padding:22px 22px 24px;min-height:168px;position:relative;line-height:1.45}
 .fact h3{font:700 var(--fs-h3)/1 var(--hand);margin-bottom:8px}
 .fact .big{font:700 var(--fs-h2)/.8 var(--hand);color:var(--orange-text);margin-bottom:8px;display:block}
-.fact .dip{width:96px;margin-top:12px;cursor:zoom-in;border:1px solid var(--milk-2)}
-.sv{display:flex;align-items:center;gap:6px;margin-top:14px;font:500 var(--fs-small)/1.1 var(--text)}
-.sv span{display:grid;place-items:center;text-align:center;width:64px;height:64px;border-radius:50%;border:2px solid var(--ink);padding:2px}
+.fact .dip{width:96px;height:auto;margin-top:12px;cursor:zoom-in;border:1px solid var(--milk-2)}
+.sv{display:grid;grid-template-columns:minmax(0,64px) auto minmax(0,64px) auto minmax(0,64px);align-items:center;gap:4px;margin-top:14px;font:500 var(--fs-small)/1.1 var(--text)}
+.sv span{display:grid;place-items:center;text-align:center;width:100%;aspect-ratio:1;border-radius:50%;border:2px solid var(--ink);padding:2px}
 .sv span:nth-child(3){border-color:var(--orange)}
+.fact--sv{grid-column:1/-1}
 .sv em{font-style:normal;color:var(--orange)}
-.phrases-wrap{grid-column:1/-1;margin-top:120px}
-.phrases-wrap .h3{padding:0 var(--margin);max-width:calc(var(--maxw) + 2*var(--margin));margin:0 auto 40px}
+.phrases-wrap{grid-column:1/-1;margin-top:var(--space)}
+.phrases-wrap .h2{padding:0 var(--margin);max-width:calc(var(--maxw) + 2*var(--margin));margin:0 auto 64px}
 .strip{margin-bottom:-24px;--pl:max(var(--margin), calc((100vw - var(--maxw))/2));display:flex;gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline-start:var(--pl);padding:0 var(--margin) 24px var(--pl);scrollbar-width:thin}
 .story{flex:none;width:280px;height:500px;scroll-snap-align:start;padding:36px 26px;display:flex;flex-direction:column;justify-content:center;font:700 var(--fs-h3)/1.05 var(--hand);transition:transform .25s}
 .story:hover{transform:translateY(-6px)}
 .story small{display:block;margin-top:18px;font:400 var(--fs-small)/1.45 var(--text)}
-.story:nth-child(1){background:linear-gradient(rgba(20,18,17,.88) 0%,rgba(20,18,17,.7) 38%,rgba(20,18,17,0) 62%),url(img/phrase-bg-real.jpg) center/cover;color:var(--card);justify-content:flex-start}
+.story:nth-child(1){background:linear-gradient(rgba(20,18,17,.88) 0%,rgba(20,18,17,.7) 38%,rgba(20,18,17,0) 62%),url(img/phrase-bg-real.webp) center/cover;color:var(--card);justify-content:flex-start}
 .story:nth-child(2){background:var(--orange);color:var(--ink)}
 .story:nth-child(3){background:var(--lime)}
 .story:nth-child(4){background:var(--card)}
@@ -185,7 +196,7 @@ section{position:relative}
 /* ЭКРАН 5 */
 .s5{padding-top:var(--space)}
 .s5 .head{grid-column:2/9}
-.s5 .head .small{margin-top:16px}
+.s5 .head .small{margin-top:24px}
 .review-main{grid-column:2/11;margin-top:64px;position:relative}
 .review-main::before{content:"“";position:absolute;left:calc(-1 * (100%/9) - 30px);top:-60px;font:700 var(--fs-h1)/1 var(--hand);color:var(--orange)}
 .review-main p{font:400 var(--fs-h3)/1.38 var(--text);color:var(--ink)}
@@ -279,6 +290,7 @@ body.sheet-open .sheet{transform:none}
 /* средние экраны: ноутбуки 761–1200 px */
 @media (min-width: 761px) and (max-width: 1200px){
   .hero .badge{top:34%}
+  .arrow{display:none}
   .s2 .card{grid-template-columns:minmax(0,1fr);padding:48px}
   .s2 .side{border-right:0;border-bottom:1.5px solid var(--line);padding:0 0 32px;margin-bottom:32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:48px}
   .s2 .side h2{grid-row:1/4}
@@ -350,15 +362,13 @@ body.sheet-open .sheet{transform:none}
   .s4 .text{padding:72px var(--margin) 0}
   .facts{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:48px}
   .fact{padding:20px 20px 22px;min-height:0}
-  .sv{gap:6px}
   /* зоны нажатия не меньше 44 px */
   .link,footer .row a,.logo{display:inline-block;padding:11px 0}
   .safety-line a{padding:11px 0}
   .btn--sm{min-height:44px}
   .qa details{padding:11px 0}
   .qa summary{padding:7px 0}
-  .phrases-wrap{margin-top:72px}
-  .phrases-wrap .h3{margin-bottom:24px}
+  .phrases-wrap .h2{margin-bottom:40px}
   .story{width:78vw;height:430px}
 
   .s5 .head,.review-main,.review-sm.a,.review-sm.b,.review-sm.c,.s5 .cta{grid-column:1/-1}
@@ -419,7 +429,7 @@ body.sheet-open .sheet{transform:none}
 
 <!-- 0. ШАПКА -->
 <header class="wrap top">
-  <a class="logo" href="#">Аня, ты псих<span>олог</span></a>
+  <a class="logo" href="#">Аня, ты&nbsp;псих<span>олог</span></a>
   <nav>
     <a href="#price">Цена</a>
     <a href="#faq">Вопросы</a>
@@ -432,16 +442,16 @@ body.sheet-open .sheet{transform:none}
 <section class="hero" id="hero">
   <div class="copy">
     <h1>Аня, <span class="ty">ты<svg class="spark" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 4v36M4 22h36M9 9l26 26M35 9L9 35"/></svg></span><br>псих<span class="olog">олог<svg viewBox="0 0 300 22" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 60 4, 110 20, 160 10 S 260 6, 296 12"/></svg></span></h1>
-    <p class="lead">Со мной можно быть собой — без необходимости казаться «правильным».</p>
+    <p class="lead">Со&nbsp;мной можно быть собой&nbsp;— без&nbsp;необходимости казаться «правильным».</p>
     <p class="meta">онлайн · встреча 1&nbsp;час · <b>1000&nbsp;₽</b> до&nbsp;1&nbsp;января</p>
     <div class="actions">
       <button class="btn" data-book><span>Записаться на <span class="opt">бесплатное </span>знакомство</span><svg class="stroke" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></button>
-      <a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Написать в Instagram<svg class="stroke" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></a>
+      <a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Написать в&nbsp;Instagram<svg class="stroke" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></a>
     </div>
   </div>
   <div class="visual">
     <div class="frame"><img class="anya" src="img/anya-hero-v2.webp" alt="Аня Литинская, психолог" width="760" height="1009" fetchpriority="high"></div>
-    <div class="badge"><span><b>0 ₽</b>знакомство<br>15 минут</span></div>
+    <div class="badge"><span><b>0&nbsp;₽</b>знакомство<br>15&nbsp;минут</span></div>
   </div>
 </section>
 
@@ -458,67 +468,67 @@ body.sheet-open .sheet{transform:none}
   <div class="card">
     <div class="side">
       <h2 class="h2">Можно прийти, если…</h2>
-      <p>Узнаёшь что-то из этого — значит, нам есть о чём поговорить.</p>
+      <p>Узнаёшь что-то из&nbsp;этого&nbsp;— значит, нам есть о&nbsp;чём поговорить.</p>
       <a class="link" href="#" data-book>Узнаёшь себя? Записаться<svg class="stroke" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></a>
-      <p class="safety-line"><span class="i">i</span><span>Если тебе очень плохо прямо сейчас и есть мысли навредить себе — не жди записи. <a href="#safety">Вот где помогут сразу</a>.</span></p>
+      <p class="safety-line"><span class="i">i</span><span>Если&nbsp;тебе очень плохо прямо сейчас и&nbsp;есть мысли навредить себе&nbsp;— не&nbsp;жди записи. <a href="#safety">Вот где помогут сразу</a>.</span></p>
     </div>
     <div class="list">
-      <div class="item"><span class="chip"><svg aria-hidden="true"><use href="#i-cloud"/></svg></span><div><h3 class="h3">Тревожно без повода</h3><p>Ничего не случилось, а внутри всё равно сжато и ждёт плохого.</p></div></div>
-      <div class="item"><span class="chip"><svg aria-hidden="true"><use href="#i-batt"/></svg></span><div><h3 class="h3">Ничего не хочется</h3><p>Не грустно — пусто. И непонятно, куда делись силы.</p></div></div>
-      <div class="item"><span class="chip"><svg aria-hidden="true"><use href="#i-moon"/></svg></span><div><h3 class="h3">Бывают тёмные периоды</h3><p>Когда встать с кровати — уже подвиг. Потом отпускает. Потом снова.</p></div></div>
-      <div class="item"><span class="chip"><svg aria-hidden="true"><use href="#i-comp"/></svg></span><div><h3 class="h3">Потерялся</h3><p>Живёшь будто по чужому сценарию и не помнишь, чего хочешь сам.</p></div></div>
-      <div class="item"><span class="chip"><svg aria-hidden="true"><use href="#i-heart"/></svg></span><div><h3 class="h3">Отношения ранят</h3><p>Одни и те же ссоры, или старая история до сих пор болит.</p></div></div>
-      <div class="item item--edge"><span class="chip"><svg aria-hidden="true"><use href="#i-face"/></svg></span><div><h3 class="h3">Вроде всё нормально — но нет</h3><p>Шутишь, всё контролируешь, на вопрос «как ты?» отвечаешь «норм». А внутри другое.</p></div></div>
+      <div class="item"><span class="chip"><svg aria-hidden="true"><use href="#i-cloud"/></svg></span><div><h3 class="h3">Тревожно без&nbsp;повода</h3><p>Ничего не&nbsp;случилось, а&nbsp;внутри всё&nbsp;равно сжато и&nbsp;ждёт плохого.</p></div></div>
+      <div class="item"><span class="chip"><svg aria-hidden="true"><use href="#i-batt"/></svg></span><div><h3 class="h3">Ничего не&nbsp;хочется</h3><p>Не&nbsp;грустно&nbsp;— пусто. И&nbsp;непонятно, куда делись силы.</p></div></div>
+      <div class="item"><span class="chip"><svg aria-hidden="true"><use href="#i-moon"/></svg></span><div><h3 class="h3">Бывают тёмные периоды</h3><p>Когда встать с&nbsp;кровати&nbsp;— уже подвиг. Потом отпускает. Потом снова.</p></div></div>
+      <div class="item"><span class="chip"><svg aria-hidden="true"><use href="#i-comp"/></svg></span><div><h3 class="h3">Потерялся</h3><p>Живёшь будто по&nbsp;чужому сценарию и&nbsp;не&nbsp;помнишь, чего хочешь сам.</p></div></div>
+      <div class="item"><span class="chip"><svg aria-hidden="true"><use href="#i-heart"/></svg></span><div><h3 class="h3">Отношения ранят</h3><p>Одни и&nbsp;те&nbsp;же&nbsp;ссоры, или&nbsp;старая история до&nbsp;сих пор болит.</p></div></div>
+      <div class="item item--edge"><span class="chip"><svg aria-hidden="true"><use href="#i-face"/></svg></span><div><h3 class="h3">Вроде всё&nbsp;нормально&nbsp;— но&nbsp;нет</h3><p>Шутишь, всё&nbsp;контролируешь, на&nbsp;вопрос «как&nbsp;ты?» отвечаешь «норм». А&nbsp;внутри другое.</p></div></div>
     </div>
   </div>
 </section>
 
 <!-- 3. КАК ПРОХОДИТ РАБОТА -->
 <section class="s3 wrap" id="how">
-  <h2 class="h2">Сначала знакомимся.<br>Потом — план под тебя</h2>
+  <h2 class="h2">Сначала знакомимся.<br>Потом&nbsp;— план под&nbsp;тебя</h2>
   <div class="route" id="route">
     <svg id="routeSvg" aria-hidden="true"><path id="routePath" d=""/></svg>
     <div class="steps">
-      <div class="step step--free"><div class="num">1</div><span class="tag">0 ₽ · 15 минут</span><h3 class="h3">Бесплатно знакомимся</h3><p>Коротко рассказываешь, что беспокоит, и смотришь, комфортно ли тебе со мной.</p></div>
-      <div class="step"><div class="num">2</div><h3 class="h3">Первая встреча</h3><p>Своими словами. Можно сбиваться, молчать и не знать ответов.</p></div>
-      <div class="step"><div class="num">3</div><h3 class="h3">Подбираю подход</h3><p>Не тебя под метод, а метод под тебя.</p></div>
-      <div class="step"><div class="num">4</div><h3 class="h3">Встречаемся</h3><p>Час по видео в Telegram, MAX или Телемосте.</p></div>
+      <div class="step step--free"><div class="num">1</div><span class="tag">0&nbsp;₽ · 15&nbsp;минут</span><h3 class="h3">Бесплатно знакомимся</h3><p>Коротко рассказываешь, что&nbsp;беспокоит, и&nbsp;смотришь, комфортно ли&nbsp;тебе со&nbsp;мной.</p></div>
+      <div class="step"><div class="num">2</div><h3 class="h3">Первая встреча</h3><p>Своими словами. Можно сбиваться, молчать и&nbsp;не&nbsp;знать ответов.</p></div>
+      <div class="step"><div class="num">3</div><h3 class="h3">Подбираю подход</h3><p>Не&nbsp;тебя под&nbsp;метод, а&nbsp;метод под&nbsp;тебя.</p></div>
+      <div class="step"><div class="num">4</div><h3 class="h3">Встречаемся</h3><p>Час по&nbsp;видео в&nbsp;Telegram, MAX или&nbsp;Телемосте.</p></div>
     </div>
   </div>
   <div class="grid below">
-    <p class="lock"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Всё, что ты расскажешь, остаётся между нами.</p>
+    <p class="lock"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Всё, что&nbsp;ты&nbsp;расскажешь, остаётся между нами.</p>
   </div>
 </section>
 
 <!-- 4. КТО Я -->
 <section class="s4" id="about">
   <div class="photo">
-    <img src="img/anya-about-real.jpg" alt="Аня Литинская">
+    <img src="img/anya-about-real.webp" alt="Аня Литинская" width="900" height="1350" loading="lazy" decoding="async">
     <button class="voice" id="voice" hidden aria-label="Послушать моё голосовое, 30 секунд">
       <span class="play"><svg viewBox="0 0 24 24"><path d="M7 4 L20 12 L7 20 Z"/></svg></span>
-      <span><span class="wave" id="wave"></span><span class="cap">Послушай, как я говорю</span> <span class="t">0:30</span></span>
+      <span><span class="wave" id="wave"></span><span class="cap">Послушай, как&nbsp;я&nbsp;говорю</span> <span class="t">0:30</span></span>
     </button>
   </div>
   <div class="text">
-    <h2 class="h2">Привет, я Аня.<br>И&nbsp;да, я начинающий психолог</h2>
-    <p>В 2026 году я закончила бакалавриат по психологии и теперь веду клиентов онлайн. Говорю просто, не умничаю и не тороплю.</p>
-    <p class="small voice-note" id="voiceNote" hidden>Скоро запишу голосовое — здесь будет и его расшифровка.</p>
+    <h2 class="h2">Привет, я&nbsp;Аня.<br>И&nbsp;да, я&nbsp;начинающий психолог</h2>
+    <p>В&nbsp;2026&nbsp;году я&nbsp;закончила бакалавриат по&nbsp;психологии и&nbsp;теперь веду клиентов онлайн. Говорю просто, не&nbsp;умничаю и&nbsp;не&nbsp;тороплю.</p>
+    <p class="small voice-note" id="voiceNote" hidden>Скоро запишу голосовое&nbsp;— здесь будет и&nbsp;его расшифровка.</p>
     <div class="facts">
-      <div class="fact"><h3>Диплом психолога</h3>Бакалавр психологии, ДГТУ, 2026.<img class="dip" src="img/diploma.jpg" alt="Диплом бакалавра психологии, номер скрыт" id="dip"></div>
-      <div class="fact"><span class="big">37</span>человек уже были у меня на встречах.</div>
-      <div class="fact"><h3>Работаю с детьми</h3>Очно, это отдельная практика. Онлайн-встречи здесь — для взрослых.<!-- уточнить у Ани: детская школа или детский центр нейропсихологии --></div>
-      <div class="fact"><h3>Супервизия</h3>Разбираю свою работу с опытным психологом, без имён. На твою ситуацию смотрят двое.
+      <div class="fact"><h3>Диплом психолога</h3>Бакалавр психологии, ДГТУ, 2026.<img class="dip" src="img/diploma-thumb.webp" alt="Диплом бакалавра психологии, номер скрыт" id="dip" width="240" height="171" loading="lazy" decoding="async"></div>
+      <div class="fact"><span class="big">37</span>человек уже были у&nbsp;меня на&nbsp;встречах.</div>
+      <div class="fact"><h3>Работаю с&nbsp;детьми</h3>Очно, это отдельная практика. Онлайн-встречи здесь&nbsp;— для&nbsp;взрослых.<!-- уточнить у Ани: детская школа или детский центр нейропсихологии --></div>
+      <div class="fact fact--sv"><h3>Супервизия</h3>Разбираю свою работу с&nbsp;опытным психологом, без&nbsp;имён. На&nbsp;твою ситуацию смотрят двое.
         <div class="sv"><span>ты</span><em>→</em><span>я</span><em>→</em><span>супер-визор</span></div></div>
     </div>
   </div>
   <div class="phrases-wrap">
-    <h3 class="h3">Фразы, которые я люблю говорить клиентам</h3>
+    <h2 class="h2">Фразы, которые я&nbsp;люблю говорить клиентам</h2>
     <div class="strip" tabindex="0" aria-label="Фразы, листаются вбок">
-      <div class="story">Ты можешь перевыбрать.<small>То, что однажды было твоим выбором, не обязано оставаться им навсегда.</small></div>
-      <div class="story">То, что тебе тяжело, не значит, что ты не справляешься.<small>Возможно, тебе сейчас просто реально тяжело.</small></div>
-      <div class="story">Дорогу осилит идущий.<small>Не тот, кто всё понял и ничего не боится, а тот, кто делает следующий шаг.</small></div>
-      <div class="story">Ты готов к своей мечте<small>ровно в тот момент, когда она появилась внутри тебя.</small></div>
-      <div class="story">Аня Псих — это я 👀<small>Здесь про психологию, чувства, отношения и жизнь.</small></div>
+      <div class="story">Ты&nbsp;можешь перевыбрать.<small>То, что&nbsp;однажды было твоим выбором, не&nbsp;обязано оставаться им&nbsp;навсегда.</small></div>
+      <div class="story">То, что&nbsp;тебе тяжело, не&nbsp;значит, что&nbsp;ты&nbsp;не&nbsp;справляешься.<small>Возможно, тебе сейчас просто реально тяжело.</small></div>
+      <div class="story">Дорогу осилит идущий.<small>Не&nbsp;тот, кто всё&nbsp;понял и&nbsp;ничего не&nbsp;боится, а&nbsp;тот, кто делает следующий шаг.</small></div>
+      <div class="story">Ты&nbsp;готов к&nbsp;своей мечте<small>ровно в&nbsp;тот момент, когда она появилась внутри тебя.</small></div>
+      <div class="story">Аня Псих&nbsp;— это я&nbsp;👀<small>Здесь про&nbsp;психологию, чувства, отношения и&nbsp;жизнь.</small></div>
     </div>
   </div>
 </section>
@@ -526,12 +536,12 @@ body.sheet-open .sheet{transform:none}
 <!-- 5. ОТЗЫВЫ -->
 <section class="s5 wrap" id="reviews">
   <div class="grid">
-    <div class="head"><h2 class="h2">Что говорят после встреч</h2><p class="small">Отзывы клиентов. Публикую с согласия авторов и без имён.</p></div>
-    <div class="review-main"><span class="tagp">Тревога</span><p>Я пришла с тревогой и кучей мыслей в голове, которые постоянно прокручивала по кругу. В процессе показалось, что я многое про себя вообще не замечала. Мне очень нравится, что с вами можно говорить нормально, без каких-то заученных фраз. Не скажу, что теперь у меня идеальная жизнь, но я точно стала по-другому смотреть на себя и свои ситуации.</p></div>
-    <div class="review-sm a"><p>Если коротко — я пришла с мыслью «ну давайте попробуем, вдруг поможет». Мне понравилось, что вы не пытались меня учить жизни. Наоборот, иногда один ваш вопрос заставлял меня потом полдня ходить и думать: «Так… а ведь правда». Сейчас я гораздо спокойнее реагирую на многие вещи и меньше загоняю себя.</p></div>
-    <div class="review-sm b"><p>Я пришла с одной проблемой, а в итоге поняла про себя намного больше. Очень нравится, что с вами можно говорить обо всём без страха, что меня осудят.</p></div>
-    <div class="review-sm c"><p>Честно, не ожидала, что терапия настолько мне поможет. Я стала меньше накручивать себя и намного спокойнее реагировать на ситуации, которые раньше выбивали меня из колеи.</p></div>
-    <div class="cta"><button class="btn" data-book><span>Записаться на <span class="opt">бесплатное </span>знакомство</span><svg class="stroke" viewBox="0 0 30 20"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></button><a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Ещё отзывы в Instagram</a></div>
+    <div class="head"><h2 class="h2">Что&nbsp;говорят после встреч</h2><p class="small">Отзывы клиентов. Публикую с&nbsp;согласия авторов и&nbsp;без&nbsp;имён.</p></div>
+    <div class="review-main"><span class="tagp">Тревога</span><p>Я&nbsp;пришла с&nbsp;тревогой и&nbsp;кучей мыслей в&nbsp;голове, которые постоянно прокручивала по&nbsp;кругу. В&nbsp;процессе показалось, что&nbsp;я&nbsp;многое про&nbsp;себя вообще не&nbsp;замечала. Мне очень нравится, что&nbsp;с&nbsp;вами можно говорить нормально, без&nbsp;каких-то заученных фраз. Не&nbsp;скажу, что&nbsp;теперь у&nbsp;меня идеальная жизнь, но&nbsp;я&nbsp;точно стала по-другому смотреть на&nbsp;себя и&nbsp;свои ситуации.</p></div>
+    <div class="review-sm a"><p>Если&nbsp;коротко&nbsp;— я&nbsp;пришла с&nbsp;мыслью «ну&nbsp;давайте попробуем, вдруг поможет». Мне понравилось, что&nbsp;вы&nbsp;не&nbsp;пытались меня учить жизни. Наоборот, иногда один ваш вопрос заставлял меня потом полдня ходить и&nbsp;думать: «Так… а&nbsp;ведь правда». Сейчас я&nbsp;гораздо спокойнее реагирую на&nbsp;многие вещи и&nbsp;меньше загоняю себя.</p></div>
+    <div class="review-sm b"><p>Я&nbsp;пришла с&nbsp;одной проблемой, а&nbsp;в&nbsp;итоге поняла про&nbsp;себя намного больше. Очень нравится, что&nbsp;с&nbsp;вами можно говорить обо всём без&nbsp;страха, что&nbsp;меня осудят.</p></div>
+    <div class="review-sm c"><p>Честно, не&nbsp;ожидала, что&nbsp;терапия настолько мне поможет. Я&nbsp;стала меньше накручивать себя и&nbsp;намного спокойнее реагировать на&nbsp;ситуации, которые раньше выбивали меня из&nbsp;колеи.</p></div>
+    <div class="cta"><button class="btn" data-book><span>Записаться на <span class="opt">бесплатное </span>знакомство</span><svg class="stroke" viewBox="0 0 30 20"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></button><a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Ещё отзывы в&nbsp;Instagram</a></div>
   </div>
 </section>
 
@@ -540,12 +550,12 @@ body.sheet-open .sheet{transform:none}
   <div class="wrap">
     <div class="grid">
       <div class="pricebox">
-        <p class="label">за встречу 1 час — <u>до&nbsp;1&nbsp;января</u></p>
-        <div class="price" aria-label="1000 рублей">1000 ₽<span class="sticker zero"><b>0 ₽</b>знакомство 15 минут</span></div>
+        <p class="label">за&nbsp;встречу 1&nbsp;час&nbsp;— <u>до&nbsp;1&nbsp;января</u></p>
+        <div class="price" aria-label="1000 рублей">1000&nbsp;₽<span class="sticker zero"><b>0&nbsp;₽</b>знакомство 15&nbsp;минут</span></div>
       </div>
       <div class="right">
-        <p>Я набираю практику и правда считаю, что терапия должна быть по карману.</p>
-        <p>Это не пробная и не урезанная встреча: полный час и супервизия — как будет и дальше.</p>
+        <p>Я&nbsp;набираю практику и&nbsp;правда считаю, что&nbsp;терапия должна быть по&nbsp;карману.</p>
+        <p>Это не&nbsp;пробная и&nbsp;не&nbsp;урезанная встреча: полный час и&nbsp;супервизия&nbsp;— как&nbsp;будет и&nbsp;дальше.</p>
         <button class="btn btn--ink" data-book><span>Записаться на <span class="opt">бесплатное </span>знакомство</span><svg class="stroke" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></button>
       </div>
     </div>
@@ -555,17 +565,17 @@ body.sheet-open .sheet{transform:none}
 <!-- 7. ВОПРОСЫ -->
 <section class="s7 wrap" id="faq">
   <div class="grid">
-    <div class="side"><h2 class="h2">Вопросы, которые обычно стесняются задать</h2><a class="link" href="https://t.me/al_annn" target="_blank" rel="noopener">Не нашёл ответ? Спроси меня в Telegram</a></div>
+    <div class="side"><h2 class="h2">Вопросы, которые обычно стесняются задать</h2><a class="link" href="https://t.me/al_annn" target="_blank" rel="noopener">Не&nbsp;нашёл ответ? Спроси меня в&nbsp;Telegram</a></div>
     <div class="qa">
-      <details><summary>Я не знаю, о чём говорить. Это проблема? <span class="pm">+</span></summary><p>Нет, с этого начинают многие. Я задам вопросы, а ты отвечай как получится. Разберёмся без допросов.</p></details>
-      <details><summary>Я ни разу не был у психолога. Будет странно? <span class="pm">+</span></summary><p>Первые минут пять — может быть. Потом это просто разговор с человеком, который слушает и не оценивает.</p></details>
-      <details><summary>Что если мы не подойдём друг другу? <span class="pm">+</span></summary><p>Для этого и есть бесплатные 15 минут знакомства: поймёшь до первой платной встречи. А если почувствуешь это позже — скажи прямо, я не обижусь.</p></details>
-      <details><summary>Кто узнает, что я рассказываю? <span class="pm">+</span></summary><p>Всё остаётся между нами. На супервизии я обсуждаю работу без имён и деталей, по которым тебя можно узнать.</p></details>
-      <details><summary>Сколько встреч понадобится? <span class="pm">+</span></summary><p>Зависит от запроса. Обсудим на первой встрече и будем сверяться по ходу. Остановиться можно в любой момент.</p></details>
-      <details><summary>Как подготовиться к встрече? <span class="pm">+</span></summary><p>Найди час и место, где тебя никто не услышит. Наушники помогут. Созваниваемся в любом удобном приложении: Telegram, MAX или Телемост.</p></details>
-      <details><summary>С чем ты не работаешь? <span class="pm">+</span></summary><p>С суицидальными мыслями, клиническими диагнозами и зависимостями. Тут тебе лучше подойдёт врач или узкий специалист. Если сомневаешься, напиши — подскажу, куда обратиться.</p></details>
+      <details><summary>Я&nbsp;не&nbsp;знаю, о&nbsp;чём говорить. Это проблема? <span class="pm">+</span></summary><p>Нет, с&nbsp;этого начинают многие. Я&nbsp;задам вопросы, а&nbsp;ты&nbsp;отвечай как&nbsp;получится. Разберёмся без&nbsp;допросов.</p></details>
+      <details><summary>Я&nbsp;ни&nbsp;разу не&nbsp;был у&nbsp;психолога. Будет странно? <span class="pm">+</span></summary><p>Первые минут пять&nbsp;— может быть. Потом это просто разговор с&nbsp;человеком, который слушает и&nbsp;не&nbsp;оценивает.</p></details>
+      <details><summary>Что&nbsp;если&nbsp;мы&nbsp;не&nbsp;подойдём друг другу? <span class="pm">+</span></summary><p>Для&nbsp;этого и&nbsp;есть бесплатные 15&nbsp;минут знакомства: поймёшь до&nbsp;первой платной встречи. А&nbsp;если&nbsp;почувствуешь это позже&nbsp;— скажи прямо, я&nbsp;не&nbsp;обижусь.</p></details>
+      <details><summary>Кто узнает, что&nbsp;я&nbsp;рассказываю? <span class="pm">+</span></summary><p>Всё&nbsp;остаётся между нами. На&nbsp;супервизии я&nbsp;обсуждаю работу без&nbsp;имён и&nbsp;деталей, по&nbsp;которым тебя можно узнать.</p></details>
+      <details><summary>Сколько встреч понадобится? <span class="pm">+</span></summary><p>Зависит от&nbsp;запроса. Обсудим на&nbsp;первой встрече и&nbsp;будем сверяться по&nbsp;ходу. Остановиться можно в&nbsp;любой момент.</p></details>
+      <details><summary>Как&nbsp;подготовиться к&nbsp;встрече? <span class="pm">+</span></summary><p>Найди час и&nbsp;место, где тебя никто не&nbsp;услышит. Наушники помогут. Созваниваемся в&nbsp;любом удобном приложении: Telegram, MAX или&nbsp;Телемост.</p></details>
+      <details><summary>С&nbsp;чем ты&nbsp;не&nbsp;работаешь? <span class="pm">+</span></summary><p>С&nbsp;суицидальными мыслями, клиническими диагнозами и&nbsp;зависимостями. Тут&nbsp;тебе лучше подойдёт врач или&nbsp;узкий специалист. Если&nbsp;сомневаешься, напиши&nbsp;— подскажу, куда обратиться.</p></details>
     </div>
-    <div class="safety" id="safety"><span class="i">i</span><div><strong>Если тебе очень плохо прямо сейчас</strong><p>Если есть мысли навредить себе или не хочется жить — не жди записи. Обратись за экстренной помощью. При угрозе жизни звони 112.<!-- добавить проверенные номера линий психологической помощи --></p></div></div>
+    <div class="safety" id="safety"><span class="i">i</span><div><strong>Если&nbsp;тебе очень плохо прямо сейчас</strong><p>Если&nbsp;есть мысли навредить себе или&nbsp;не&nbsp;хочется жить&nbsp;— не&nbsp;жди записи. Обратись за&nbsp;экстренной помощью. При&nbsp;угрозе жизни звони 112.<!-- добавить проверенные номера линий психологической помощи --></p></div></div>
   </div>
 </section>
 
@@ -573,8 +583,8 @@ body.sheet-open .sheet{transform:none}
 <section class="s8 wrap" id="message">
   <div class="grid">
     <div class="left">
-      <h2 class="h2">Самое сложное — написать «привет». Вот готовый текст</h2>
-      <p class="mono">Можно и просто «привет» — дальше я сама спрошу.</p>
+      <h2 class="h2">Самое сложное&nbsp;— написать «привет». Вот готовый текст</h2>
+      <p class="mono">Можно и&nbsp;просто «привет»&nbsp;— дальше я&nbsp;сама спрошу.</p>
       <svg class="arrow" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true"><path d="M20 20 C 120 140, 260 150, 380 110 M352 92 L382 110 L356 132"/></svg>
     </div>
     <div class="chat-holder" id="chatHolder"></div>
@@ -585,10 +595,10 @@ body.sheet-open .sheet{transform:none}
 </main>
 <footer>
   <div class="wrap row">
-    <div>Анна Литинская, психолог<br><span style="color:#B9AFA7">Если тебе очень плохо прямо сейчас и есть угроза жизни — звони 112.</span></div>
-    <div class="contacts"><div class="links"><a href="https://t.me/al_annn" target="_blank" rel="noopener">Telegram</a><a href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Instagram</a><a href="https://max.ru/" target="_blank" rel="noopener">MAX</a><!-- заменить https://max.ru/ на ссылку профиля Ани из приложения MAX: Профиль → Поделиться --></div><div class="by">Создание сайта — <a href="https://t.me/ellitinskaya" target="_blank" rel="noopener">@ellitinskaya</a></div></div>
+    <div>Анна Литинская, психолог<br><span style="color:#B9AFA7">Если&nbsp;тебе очень плохо прямо сейчас и&nbsp;есть угроза жизни&nbsp;— звони 112.</span></div>
+    <div class="contacts"><div class="links"><a href="https://t.me/al_annn" target="_blank" rel="noopener">Telegram</a><a href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Instagram</a><a href="https://max.ru/" target="_blank" rel="noopener">MAX</a><!-- заменить https://max.ru/ на ссылку профиля Ани из приложения MAX: Профиль → Поделиться --></div><div class="by">Создание сайта&nbsp;— <a href="https://t.me/ellitinskaya" target="_blank" rel="noopener">@ellitinskaya</a></div></div>
   </div>
-  <div class="sign">Аня, ты псих<em>олог</em></div>
+  <div class="sign">Аня, ты&nbsp;псих<em>олог</em></div>
 </footer>
 
 <!-- ПАНЕЛЬ ЗАПИСИ -->
@@ -596,26 +606,26 @@ body.sheet-open .sheet{transform:none}
 <aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" aria-hidden="true">
   <button class="close" id="sheetClose" aria-label="Закрыть">×</button>
   <h3 id="sheetTitle">Готовое сообщение</h3>
-  <p class="mono">Допиши, что хочешь, скопируй и отправь мне. Можно и просто «привет».</p>
+  <p class="mono">Допиши, что&nbsp;хочешь, скопируй и&nbsp;отправь мне. Можно и&nbsp;просто «привет».</p>
   <div id="sheetChat"></div>
   <div class="alt"><a class="link" href="https://t.me/al_annn" target="_blank" rel="noopener">Просто открыть Telegram</a></div>
 </aside>
 
 <!-- НИЖНЯЯ КНОПКА -->
-<div class="dock" id="dock"><button class="btn" data-book>Записаться — 15 минут бесплатно</button></div>
+<div class="dock" id="dock"><button class="btn" data-book>Записаться&nbsp;— 15&nbsp;минут бесплатно</button></div>
 
 <template id="chatTpl">
   <div class="chat">
-    <div class="who"><img src="img/anya-avatar-real.jpg" alt=""><div>Аня<small>психолог · отвечаю быстро</small></div></div>
+    <div class="who"><img src="img/anya-avatar-real.webp" alt="" width="40" height="40" loading="lazy" decoding="async"><div>Аня<small>психолог · отвечаю быстро</small></div></div>
     <div class="bubble">
-      Привет, Аня! Хочу записаться на бесплатное знакомство.
+      Привет, Аня! Хочу записаться на&nbsp;бесплатное знакомство.
       <label>Меня беспокоит:<input data-f="worry" placeholder="тревога по вечерам"></label>
       <label>Мне удобно:<input data-f="time" placeholder="будни после 19:00"></label>
-      <div style="margin-top:8px">Пишу с сайта.</div>
+      <div style="margin-top:8px">Пишу с&nbsp;сайта.</div>
     </div>
-    <button class="btn" data-copy>Скопировать и открыть Telegram</button>
-    <p class="err">Не получилось скопировать. Выдели текст и скопируй вручную.</p>
-    <div class="links"><a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Написать в Instagram</a></div>
+    <button class="btn" data-copy>Скопировать и&nbsp;открыть Telegram</button>
+    <p class="err">Не&nbsp;получилось скопировать. Выдели текст и&nbsp;скопируй вручную.</p>
+    <div class="links"><a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Написать в&nbsp;Instagram</a></div>
   </div>
 </template>
 
@@ -702,7 +712,7 @@ body.sheet-open .sheet{transform:none}
   endObs.observe(document.getElementById('message')); endObs.observe(document.querySelector('footer'));
 
   /* диплом крупно */
-  document.getElementById('dip').addEventListener('click',()=>window.open('img/diploma.jpg','_blank'));
+  document.getElementById('dip').addEventListener('click',()=>window.open('img/diploma.webp','_blank'));
 
   function layout(){ drawRoute(); }
   addEventListener('scroll',onScroll,{passive:true});
