@@ -135,20 +135,18 @@ section{position:relative}
 
 /* ЭКРАН 3 */
 .s3{padding-top:var(--space)}
-.route{position:relative;margin-top:64px;height:420px}
+.route{position:relative;margin-top:64px}
 .route svg{position:absolute;top:0;left:calc(-1 * max(var(--margin), (100vw - var(--maxw))/2));width:100vw;height:100%;overflow:visible;pointer-events:none}
 .route path{fill:none;stroke:var(--orange);stroke-width:4;stroke-linecap:round}
-.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);column-gap:var(--gap);height:100%}
-.step{position:relative;padding-right:16px}
-.step:nth-child(odd){padding-top:150px}
-.step:nth-child(even){padding-top:20px}
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);column-gap:var(--gap);align-items:stretch}
+.step{position:relative;padding:20px 20px 24px}
 .num{width:48px;height:48px;border-radius:50%;background:var(--milk);border:2.5px solid var(--orange);display:grid;place-items:center;font:700 var(--fs-h3)/1 var(--hand);color:var(--orange);margin-bottom:16px;position:relative;z-index:1;transition:background .3s,color .3s}
 .num.on{background:var(--orange);color:var(--card)}
 .step:not(.step--free) > :not(.num){position:relative;background:var(--milk);box-shadow:0 0 0 6px var(--milk)}
 .step .h3{margin-bottom:8px}
 .step p{line-height:1.5}
-.step--free{background:var(--lime);padding:20px 20px 24px;margin-top:-20px;align-self:start}
-.step--free .tag{font:500 var(--fs-small)/1 var(--text);display:inline-block;margin-bottom:10px;background:var(--ink);color:var(--lime);padding:5px 8px}
+.step--free{background:var(--lime)}
+.step--free .tag{position:absolute;top:32px;right:20px;font:500 var(--fs-small)/1 var(--text);display:inline-block;background:var(--ink);color:var(--lime);padding:5px 8px}
 .s3 .below{margin-top:56px;align-items:start}
 .lock{grid-column:1/-1;display:flex;gap:12px;align-items:center}
 .quote-note{grid-column:7/13;background:var(--card);padding:28px 32px;transform:rotate(2deg);box-shadow:0 18px 40px -26px rgba(31,28,26,.45)}
@@ -195,16 +193,16 @@ section{position:relative}
 
 /* ЭКРАН 5 */
 .s5{padding-top:var(--space)}
-.s5 .head{grid-column:2/9}
+.s5 .head{grid-column:1/9}
 .s5 .head .small{margin-top:24px}
-.review-main{grid-column:2/11;margin-top:64px;position:relative}
+.review-main{grid-column:1/11;margin-top:64px;position:relative}
 .review-main p{font:400 var(--fs-h3)/1.38 var(--text);color:var(--ink)}
 .tagp{display:inline-block;background:var(--orange);color:var(--ink);font:600 var(--fs-small)/1 var(--text);padding:6px 10px;margin-bottom:16px}
-.review-sm{background:var(--card);padding:24px 26px;margin-top:64px;line-height:1.55;color:var(--ink);align-self:start;position:relative}
-.review-sm.a{grid-column:2/7}
-.review-sm.b{grid-column:7/10;margin-top:120px}
-.review-sm.c{grid-column:10/13;margin-top:88px}
-.s5 .cta{grid-column:2/13;margin-top:64px;display:flex;gap:56px;align-items:center;flex-wrap:wrap}
+.review-sm{background:var(--card);padding:24px 26px;margin-top:64px;line-height:1.55;color:var(--ink);align-self:stretch;position:relative}
+.review-sm.a{grid-column:1/5}
+.review-sm.b{grid-column:5/9}
+.review-sm.c{grid-column:9/13}
+.s5 .cta{grid-column:1/13;margin-top:64px;display:flex;gap:56px;align-items:center;flex-wrap:wrap}
 
 /* ЭКРАН 6 */
 .s6{margin-top:var(--space);background:var(--orange-field);overflow:hidden}
@@ -220,16 +218,16 @@ section{position:relative}
 
 /* ЭКРАН 7 */
 .s7{padding-top:var(--space)}
-.s7 .side{grid-column:1/5;position:sticky;top:40px;align-self:start}
+.s7 .side{grid-column:1/6;position:sticky;top:40px;align-self:start}
 .s7 .side a{display:inline-block;margin-top:40px}
-.qa{grid-column:6/13}
+.qa{grid-column:7/13}
 .qa details{padding:18px 0}
 .qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;font:700 var(--fs-h3)/1.1 var(--hand)}
 .qa summary::-webkit-details-marker{display:none}
 .qa summary .pm{flex:none;font:400 var(--fs-h3)/1 var(--text);color:var(--orange);transition:transform .25s}
 .qa details[open] summary .pm{transform:rotate(45deg)}
 .qa details p{margin-top:8px;max-width:56ch}
-.safety{grid-column:6/13;margin-top:64px;padding:28px 32px;display:flex;gap:16px;align-items:flex-start;background:var(--milk-2)}
+.safety{grid-column:7/13;margin-top:64px;padding:28px 32px;display:flex;gap:16px;align-items:flex-start;background:var(--milk-2)}
 .safety .i{margin-top:3px}
 .safety strong{display:block;font:700 var(--fs-h3)/1.1 var(--hand);margin-bottom:8px}
 .safety p{max-width:65ch}
@@ -300,11 +298,12 @@ body.sheet-open .sheet{transform:none}
   .s2 .side > p:first-of-type{margin-top:8px}
   .pricebox{grid-column:1/-1}
   .s6 .right{grid-column:1/9;margin-top:40px}
-  .route{height:auto;min-height:420px}
-  .steps{height:auto}
 }
 /* планшеты 761–1000 px: первый экран и «Кто я» в одну колонку */
 @media (min-width: 761px) and (max-width: 1000px){
+  .review-sm.a,.review-sm.b,.review-sm.c{grid-column:1/-1}
+  .review-sm{margin-top:var(--gap)}
+  .review-sm.a{margin-top:64px}
   .s4{grid-template-columns:minmax(0,1fr)}
   .s4 .photo{min-height:0;aspect-ratio:16/11}
   .s4 .text{padding:64px var(--margin) 0}
@@ -351,9 +350,9 @@ body.sheet-open .sheet{transform:none}
   .route{height:auto;margin-top:40px}
   .route svg{left:0;width:100%}
   .steps{grid-template-columns:1fr;row-gap:40px;padding-left:64px}
-  .step:nth-child(n){padding-top:0}
+  .step:not(.step--free){padding:0}
+  .step--free .tag{position:static;margin-bottom:10px}
   .step .num{position:absolute;left:-64px;top:0}
-  .step--free{margin-top:0}
   .step--free .num{top:20px}
   .s3 .below{margin-top:56px;row-gap:32px}
   .lock,.quote-note{grid-column:1/-1}
@@ -376,8 +375,8 @@ body.sheet-open .sheet{transform:none}
 
   .s5 .head,.review-main,.review-sm.a,.review-sm.b,.review-sm.c,.s5 .cta{grid-column:1/-1}
   .review-main{margin-top:40px}
-  .review-sm,.review-sm.b,.review-sm.c{margin-top:36px}
-  .review-sm.a{margin-top:32px}
+  .review-sm{margin-top:var(--gap)}
+  .review-sm.a{margin-top:40px}
   .s5 .cta{gap:20px;margin-top:32px}
   .s5 .cta .btn{width:100%;justify-content:center}
 
@@ -470,7 +469,7 @@ body.sheet-open .sheet{transform:none}
   <div class="card">
     <div class="side">
       <h2 class="h2">Можно прийти, если…</h2>
-      <p>Узнаёшь что-то из&nbsp;этого&nbsp;— значит, нам есть о&nbsp;чём поговорить.</p>
+      <p>Узнаёшь что‑то из&nbsp;этого&nbsp;— значит, нам есть о&nbsp;чём поговорить.</p>
       <a class="link" href="#" data-book>Узнаёшь себя? Записаться<svg class="stroke" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></a>
       <p class="safety-line"><span class="i">i</span><span>Если&nbsp;тебе очень плохо прямо сейчас и&nbsp;есть мысли навредить себе&nbsp;— не&nbsp;жди записи. <a href="#safety">Вот где помогут сразу</a>.</span></p>
     </div>
@@ -539,7 +538,7 @@ body.sheet-open .sheet{transform:none}
 <section class="s5 wrap" id="reviews">
   <div class="grid">
     <div class="head"><h2 class="h2">Что&nbsp;говорят после встреч</h2><p class="small">Отзывы клиентов. Публикую с&nbsp;согласия авторов и&nbsp;без&nbsp;имён.</p></div>
-    <div class="review-main"><span class="tagp">Тревога</span><p>Я&nbsp;пришла с&nbsp;тревогой и&nbsp;кучей мыслей в&nbsp;голове, которые постоянно прокручивала по&nbsp;кругу. В&nbsp;процессе показалось, что&nbsp;я&nbsp;многое про&nbsp;себя вообще не&nbsp;замечала. Мне очень нравится, что&nbsp;с&nbsp;вами можно говорить нормально, без&nbsp;каких-то заученных фраз. Не&nbsp;скажу, что&nbsp;теперь у&nbsp;меня идеальная жизнь, но&nbsp;я&nbsp;точно стала по-другому смотреть на&nbsp;себя и&nbsp;свои ситуации.</p></div>
+    <div class="review-main"><span class="tagp">Тревога</span><p>Я&nbsp;пришла с&nbsp;тревогой и&nbsp;кучей мыслей в&nbsp;голове, которые постоянно прокручивала по&nbsp;кругу. В&nbsp;процессе показалось, что&nbsp;я&nbsp;многое про&nbsp;себя вообще не&nbsp;замечала. Мне очень нравится, что&nbsp;с&nbsp;вами можно говорить нормально, без&nbsp;каких‑то заученных фраз. Не&nbsp;скажу, что&nbsp;теперь у&nbsp;меня идеальная жизнь, но&nbsp;я&nbsp;точно стала по‑другому смотреть на&nbsp;себя и&nbsp;свои ситуации.</p></div>
     <div class="review-sm a"><p>Если&nbsp;коротко&nbsp;— я&nbsp;пришла с&nbsp;мыслью «ну&nbsp;давайте попробуем, вдруг поможет». Мне понравилось, что&nbsp;вы&nbsp;не&nbsp;пытались меня учить жизни. Наоборот, иногда один ваш вопрос заставлял меня потом полдня ходить и&nbsp;думать: «Так… а&nbsp;ведь правда». Сейчас я&nbsp;гораздо спокойнее реагирую на&nbsp;многие вещи и&nbsp;меньше загоняю себя.</p></div>
     <div class="review-sm b"><p>Я&nbsp;пришла с&nbsp;одной проблемой, а&nbsp;в&nbsp;итоге поняла про&nbsp;себя намного больше. Очень нравится, что&nbsp;с&nbsp;вами можно говорить обо всём без&nbsp;страха, что&nbsp;меня осудят.</p></div>
     <div class="review-sm c"><p>Честно, не&nbsp;ожидала, что&nbsp;терапия настолько мне поможет. Я&nbsp;стала меньше накручивать себя и&nbsp;намного спокойнее реагировать на&nbsp;ситуации, которые раньше выбивали меня из&nbsp;колеи.</p></div>
@@ -693,7 +692,7 @@ body.sheet-open .sheet{transform:none}
     if(mobile()){
       const x=pts[0][0]; d='M'+x+' -40 L'+x+' '+(sb.height+40);
     } else {
-      const all=[[0,pts[0][1]+60],...pts,[sb.width,pts[3][1]-40]];
+      const all=[[0,pts[0][1]],...pts,[sb.width,pts[3][1]]];
       d='M'+all[0][0]+' '+all[0][1];
       for(let i=1;i<all.length;i++){const [x0,y0]=all[i-1],[x1,y1]=all[i]; const mx=(x0+x1)/2; d+=' C'+mx+' '+y0+' '+mx+' '+y1+' '+x1+' '+y1;}
     }
