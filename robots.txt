@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anya-psiholog.github.io/sitemap.xml
