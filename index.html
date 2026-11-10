@@ -149,6 +149,8 @@ section{position:relative}
 .item h3{margin:0 0 8px}
 .item p{font-size:var(--fs-small);line-height:1.45;color:#4A4540}
 .item mark{background:var(--lime);color:inherit;padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+a.tel{font-weight:600;color:var(--ink);text-underline-offset:3px;white-space:nowrap}
+footer a.tel{color:var(--milk)}
 .safety-line{display:flex;gap:10px;align-items:flex-start;max-width:62ch;font:400 var(--fs-small)/1.45 var(--text);color:var(--muted)}
 .i{flex:none;width:20px;height:20px;border:1.5px solid currentColor;border-radius:50%;display:inline-grid;place-items:center;font:600 12px/1 var(--text);margin-top:1px}
 
@@ -337,6 +339,8 @@ body.sheet-open .sheet{transform:none}
   .s2 .card{grid-template-columns:minmax(0,1fr);padding:48px}
   .s2 .side{border-right:0;border-bottom:1.5px solid var(--line);padding:0 0 32px;margin-bottom:32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:48px}
   .s2 .side h2{grid-row:1/4}
+  /* под чертой боковой колонки — без второй черты у первого ряда */
+  .item:nth-child(-n+2){border-top:0;padding-top:0}
   .s2 .side > p:first-of-type{margin-top:8px}
   .pricebox{grid-column:1/-1}
   .s6 .right{grid-column:1/9;margin-top:40px}
@@ -408,6 +412,8 @@ body.sheet-open .sheet{transform:none}
   .s2 .side .link{margin-top:12px}
   .s2 .safety-line{margin-top:16px}
   .list{grid-template-columns:minmax(0,1fr);row-gap:24px}
+  .item:first-child{border-top:0;padding-top:0}
+  .item:nth-child(2){border-top:1.5px solid var(--line);padding-top:18px}
 
   .route{height:auto;margin-top:40px}
   .route svg{left:0;width:100%}
@@ -527,7 +533,7 @@ body.sheet-open .sheet{transform:none}
       <h2 class="h2">Можно прийти, если…</h2>
       <p>Не&nbsp;обязательно знать, как&nbsp;это&nbsp;назвать. Разберёмся вместе.</p>
       <a class="link" href="#" data-book>Записаться на&nbsp;бесплатное знакомство<svg class="stroke" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 10 H26 M18 3 L27 10 L18 17"/></svg></a>
-      <p class="safety-line"><span class="i">i</span><span>Если&nbsp;тебе очень плохо прямо сейчас и&nbsp;есть мысли навредить себе, не&nbsp;жди записи. <a href="#safety">Что&nbsp;делать прямо сейчас</a>.</span></p>
+      <p class="safety-line"><span class="i">i</span><span>Если&nbsp;тебе очень плохо прямо сейчас и&nbsp;есть мысли навредить себе, не&nbsp;жди записи. Звони <a class="tel" href="tel:112">112</a>, это бесплатно.</span></p>
     </div>
     <ul class="list">
       <li class="item"><h3 class="h3">Тревожно без&nbsp;повода</h3><p>Ничего не&nbsp;случилось, а&nbsp;внутри всё&nbsp;равно сжато и&nbsp;ждёт плохого.</p></li>
@@ -648,7 +654,7 @@ body.sheet-open .sheet{transform:none}
       <details><summary>Как&nbsp;подготовиться к&nbsp;встрече? <span class="pm">+</span></summary><p>Найди час и&nbsp;место, где тебя никто не&nbsp;услышит. Наушники помогут. Созваниваемся в&nbsp;любом удобном приложении: Telegram, MAX или&nbsp;Телемост.</p></details>
       <details><summary>С&nbsp;чем ты&nbsp;не&nbsp;работаешь? <span class="pm">+</span></summary><p>С&nbsp;суицидальными мыслями, клиническими диагнозами и&nbsp;зависимостями. Тут&nbsp;тебе лучше подойдёт врач или&nbsp;узкий специалист. Если&nbsp;сомневаешься, напиши&nbsp;— подскажу, куда обратиться.</p></details>
     </div>
-    <div class="safety" id="safety"><span class="i">i</span><div><strong>Если&nbsp;тебе очень плохо прямо сейчас</strong><p>Если&nbsp;есть мысли навредить себе или&nbsp;не&nbsp;хочется жить, не&nbsp;жди записи и&nbsp;не&nbsp;оставайся с&nbsp;этим один на&nbsp;один. Звони 112: это&nbsp;единый номер экстренных служб, звонок бесплатный.<!-- добавить проверенные номера линий психологической помощи --></p></div></div>
+    <div class="safety" id="safety"><span class="i">i</span><div><strong>Если&nbsp;тебе очень плохо прямо сейчас</strong><p>Если&nbsp;есть мысли навредить себе или&nbsp;не&nbsp;хочется жить, не&nbsp;жди записи и&nbsp;не&nbsp;оставайся с&nbsp;этим один на&nbsp;один. Звони <a class="tel" href="tel:112">112</a>: это&nbsp;единый номер экстренных служб, звонок бесплатный.<!-- добавить проверенные номера линий психологической помощи --></p></div></div>
   </div>
 </section>
 
@@ -668,7 +674,7 @@ body.sheet-open .sheet{transform:none}
 </main>
 <footer>
   <div class="wrap row">
-    <div>Анна Никитина, психолог<br><span style="color:#B9AFA7">Если&nbsp;тебе очень плохо прямо сейчас и&nbsp;есть угроза жизни&nbsp;— звони 112.</span><div class="legal"><a href="politika.html">Политика обработки персональных данных</a><a href="soglasie.html">Согласие на&nbsp;обработку персональных данных</a><p>* Instagram принадлежит компании Meta, признанной экстремистской организацией и&nbsp;запрещённой в&nbsp;России.</p></div></div>
+    <div>Анна Никитина, психолог<br><span style="color:#B9AFA7">Если&nbsp;тебе очень плохо прямо сейчас и&nbsp;есть угроза жизни&nbsp;— звони <a class="tel" href="tel:112">112</a>.</span><div class="legal"><a href="politika.html">Политика обработки персональных данных</a><a href="soglasie.html">Согласие на&nbsp;обработку персональных данных</a><p>* Instagram принадлежит компании Meta, признанной экстремистской организацией и&nbsp;запрещённой в&nbsp;России.</p></div></div>
     <div class="contacts"><div class="links"><a href="https://t.me/al_annn" target="_blank" rel="noopener">Telegram</a><a href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Instagram*</a><a href="https://max.ru/" target="_blank" rel="noopener">MAX</a><!-- заменить https://max.ru/ на ссылку профиля Ани из приложения MAX: Профиль → Поделиться --></div><div class="by">Создание сайта&nbsp;— <a href="https://t.me/ellitinskaya" target="_blank" rel="noopener">@ellitinskaya</a></div></div>
   </div>
   <div class="sign">Аня, ты псих<em>олог</em></div>
