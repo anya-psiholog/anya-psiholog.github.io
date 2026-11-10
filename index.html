@@ -210,6 +210,12 @@ section{position:relative}
 .story:nth-child(4){background:var(--card)}
 .story:nth-child(5){background:var(--milk-2)}
 
+/* фразы: широкий экран — все пять в ряд; уже — листаются, у края видна только полоска следующей карточки */
+@media (min-width:761px){ .strip{padding-right:var(--pl)} }
+@media (min-width:1201px){ .story{width:calc((100vw - var(--pl) - 4*var(--gap) - 24px)/4)} }
+@media (min-width:761px) and (max-width:1200px){ .story{width:calc((100vw - var(--pl) - 3*var(--gap) - 24px)/3)} }
+@media (min-width:761px) and (max-width:1000px){ .story{width:calc((100vw - var(--pl) - 2*var(--gap) - 24px)/2)} }
+
 /* ЭКРАН 5 */
 .s5{padding-top:var(--space)}
 .s5 .head{grid-column:1/9}
@@ -320,6 +326,11 @@ body.sheet-open .sheet{transform:none}
 }
 /* планшеты 761–1000 px: первый экран и «Кто я» в одну колонку */
 @media (min-width: 761px) and (max-width: 1000px){
+  .s7 .side,.qa,.safety,.s8 .left,.s8 .chat-holder{grid-column:1/-1}
+  .s7 .side{position:static;margin-bottom:40px}
+  .s8 .chat-holder{max-width:560px;margin-top:40px}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
+  .route svg{display:none}
   .review-sm.a,.review-sm.b,.review-sm.c{grid-column:1/-1}
   .review-sm{margin-top:var(--gap)}
   .review-sm.a{margin-top:64px}
@@ -390,7 +401,8 @@ body.sheet-open .sheet{transform:none}
   .qa details{padding:11px 0}
   .qa summary{padding:7px 0}
   .phrases-wrap .h2{margin-bottom:40px}
-  .story{width:78vw;height:430px}
+  /* телефон: одна карточка, у края видна только цветная полоска следующей (24 px меньше внутреннего отступа) */
+  .story{width:calc(100vw - var(--pl) - var(--gap) - 24px);height:430px}
 
   .s5 .head,.review-main,.review-sm.a,.review-sm.b,.review-sm.c,.s5 .cta{grid-column:1/-1}
   .review-main{margin-top:40px}
@@ -523,7 +535,7 @@ body.sheet-open .sheet{transform:none}
 <!-- 4. КТО Я -->
 <section class="s4" id="about">
   <div class="photo">
-    <img src="img/anya-about-real.webp" alt="Аня Никитина" width="900" height="1350" loading="lazy" decoding="async">
+    <img src="img/anya-about-real.webp" alt="Аня Никитина" width="900" height="1350" decoding="async">
     <button class="voice" id="voice" hidden aria-label="Послушать моё голосовое, 30 секунд">
       <span class="play"><svg viewBox="0 0 24 24"><path d="M7 4 L20 12 L7 20 Z"/></svg></span>
       <span><span class="wave" id="wave"></span><span class="cap">Послушай, как&nbsp;я&nbsp;говорю</span> <span class="t">0:30</span></span>
@@ -534,7 +546,7 @@ body.sheet-open .sheet{transform:none}
     <p>В&nbsp;2026&nbsp;году я&nbsp;закончила бакалавриат по&nbsp;психологии и&nbsp;теперь веду клиентов онлайн. Говорю просто, не&nbsp;умничаю и&nbsp;не&nbsp;тороплю.</p>
     <p class="small voice-note" id="voiceNote" hidden>Скоро запишу голосовое&nbsp;— здесь будет и&nbsp;его расшифровка.</p>
     <div class="facts">
-      <div class="fact"><h3>Диплом психолога</h3>Бакалавр психологии, ДГТУ, 2026.<img class="dip" src="img/diploma-thumb.webp" alt="Диплом бакалавра психологии, номер скрыт" id="dip" width="240" height="171" loading="lazy" decoding="async"></div>
+      <div class="fact"><h3>Диплом психолога</h3>Бакалавр психологии, ДГТУ, 2026.<img class="dip" src="img/diploma-thumb.webp" alt="Диплом бакалавра психологии, номер скрыт" id="dip" width="240" height="171" decoding="async"></div>
       <div class="fact"><span class="big">37</span>человек уже были у&nbsp;меня на&nbsp;встречах.</div>
       <div class="fact"><h3>Работаю с&nbsp;детьми</h3>Очно, это отдельная практика. Онлайн-встречи здесь&nbsp;— для&nbsp;взрослых.<!-- уточнить у Ани: детская школа или детский центр нейропсихологии --></div>
       <div class="fact fact--sv"><h3>Супервизия</h3>Разбираю свою работу с&nbsp;опытным психологом, без&nbsp;имён. На&nbsp;твою ситуацию смотрят двое.
@@ -545,7 +557,7 @@ body.sheet-open .sheet{transform:none}
     <h2 class="h2">Фразы, которые я&nbsp;люблю говорить клиентам</h2>
     <div class="strip" tabindex="0" aria-label="Фразы, листаются вбок">
       <div class="story">Ты&nbsp;можешь перевыбрать.<small>То, что&nbsp;однажды было твоим выбором, не&nbsp;обязано оставаться им&nbsp;навсегда.</small></div>
-      <div class="story">То, что&nbsp;тебе тяжело, не&nbsp;значит, что&nbsp;ты&nbsp;не&nbsp;справляешься.<small>Возможно, тебе сейчас просто реально тяжело.</small></div>
+      <div class="story">То, что&nbsp;тебе тяжело, не&nbsp;значит, что ты&nbsp;не&nbsp;справляешься.<small>Возможно, тебе сейчас просто реально тяжело.</small></div>
       <div class="story">Дорогу осилит идущий.<small>Не&nbsp;тот, кто всё&nbsp;понял и&nbsp;ничего не&nbsp;боится, а&nbsp;тот, кто делает следующий шаг.</small></div>
       <div class="story">Ты&nbsp;готов к&nbsp;своей мечте<small>ровно в&nbsp;тот момент, когда она появилась внутри тебя.</small></div>
       <div class="story">Аня Псих&nbsp;— это я&nbsp;👀<small>Здесь про&nbsp;психологию, чувства, отношения и&nbsp;жизнь.</small></div>
@@ -636,7 +648,7 @@ body.sheet-open .sheet{transform:none}
 
 <template id="chatTpl">
   <div class="chat">
-    <div class="who"><img src="img/anya-avatar-real.webp" alt="" width="40" height="40" loading="lazy" decoding="async"><div>Аня<small>психолог · отвечаю быстро</small></div></div>
+    <div class="who"><img src="img/anya-avatar-real.webp" alt="" width="40" height="40" decoding="async"><div>Аня<small>психолог · отвечаю быстро</small></div></div>
     <div class="bubble">
       Привет, Аня! Хочу записаться на&nbsp;бесплатное знакомство.
       <label>Меня беспокоит:<input data-f="worry" placeholder="тревога по вечерам"></label>
