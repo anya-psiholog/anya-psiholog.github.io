@@ -73,6 +73,10 @@ p,li,small{text-wrap:pretty}
 ::selection{background:var(--lime);color:var(--ink)}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:4px}
+footer :focus-visible{outline-color:var(--milk)} /* на тёмном подвале рамка светлая */
+/* ссылка «к содержанию» для клавиатуры: видна только при фокусе */
+.skip{position:absolute;left:12px;top:-60px;z-index:60;background:var(--ink);color:var(--milk);padding:10px 14px;font:500 var(--fs-small)/1 var(--text);text-decoration:none}
+.skip:focus{top:12px}
 
 .wrap{max-width:calc(var(--maxw) + 2*var(--margin));margin:0 auto;padding:0 var(--margin)}
 .grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gap)}
@@ -433,11 +437,11 @@ body.sheet-open .sheet{transform:none}
   .facts{margin-top:40px}
   .fact{grid-template-columns:minmax(0,1fr);row-gap:6px;padding:18px 0}
   /* зоны нажатия не меньше 44 px */
-  .link,footer .row a,.logo{display:inline-block;padding:11px 0}
+  .link,footer .row a,.logo{display:inline-block;padding:12px 0}
   .safety-line a{padding:11px 0}
   .btn--sm{min-height:44px}
   .qa details{padding:11px 0}
-  .qa summary{padding:7px 0}
+  .qa summary{padding:8px 0}
   .phrases-wrap .h2{margin-bottom:40px}
   /* телефон: одна карточка, у края видна только цветная полоска следующей (24 px меньше внутреннего отступа) */
   .story{width:calc(100vw - var(--pl) - var(--gap) - 24px);height:430px}
@@ -496,6 +500,7 @@ body.sheet-open .sheet{transform:none}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">К&nbsp;содержанию</a>
 
 
 <!-- 0. ШАПКА -->
@@ -509,7 +514,7 @@ body.sheet-open .sheet{transform:none}
 </header>
 
 <!-- 1. ПЕРВЫЙ ЭКРАН -->
-<main id="main">
+<main id="main" tabindex="-1">
 <section class="hero" id="hero">
   <div class="copy">
     <h1>Аня, <span class="ty">ты</span><br>псих<span class="olog">олог<svg viewBox="0 0 300 22" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 60 4, 110 20, 160 10 S 260 6, 296 12"/></svg></span></h1>
@@ -704,7 +709,7 @@ body.sheet-open .sheet{transform:none}
     <a class="btn" data-copy href="https://t.me/al_annn" target="_blank" rel="noopener">Скопировать и&nbsp;открыть Telegram</a>
     <p class="ok" role="status"></p>
     <p class="small consent">Отправляя сообщение, ты&nbsp;соглашаешься на&nbsp;<a href="soglasie.html" target="_blank">обработку персональных данных</a>.</p>
-    <div class="err">Не&nbsp;получилось скопировать. Выдели текст ниже, скопируй и&nbsp;отправь мне в&nbsp;Telegram:<textarea class="manual" readonly aria-label="Текст сообщения"></textarea></div>
+    <div class="err" role="alert">Не&nbsp;получилось скопировать. Выдели текст ниже, скопируй и&nbsp;отправь мне в&nbsp;Telegram:<textarea class="manual" readonly aria-label="Текст сообщения"></textarea></div>
     <div class="links"><a class="link" href="https://t.me/al_annn" target="_blank" rel="noopener">Просто открыть Telegram</a><a class="link" href="https://www.instagram.com/anya_psych/" target="_blank" rel="noopener">Написать в&nbsp;Instagram*</a></div>
   </div>
 </template>
